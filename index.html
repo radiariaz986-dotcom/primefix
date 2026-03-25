@@ -1,0 +1,491 @@
+Here is the complete HTML document with the hero section background image applied exactly as requested. The image is positioned behind the text with reduced opacity and full width.
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Primefix Solution Inc. — Expert Home Services</title>
+  <meta name="description" content="Primefix Solution Inc. — Professional roofing and garage door services. Fast, reliable, and affordable. Free estimates, licensed & insured.">
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* =====================
+       GLOBAL RESET & VARIABLES
+    ===================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #030303;
+      --dark1: #0A0D0A;
+      --dark2: #111511;
+      --dark3: #161C16;
+      --green: #00c851;
+      --green-bright: #00e660;
+      --green-dark: #009e40;
+      --white: #ffffff;
+      --gray: #8a8f8a;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* navbar base styles (preserved from original) */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 5%;
+      background: rgba(3, 3, 3, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 200, 83, 0.15);
+      z-index: 1000;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      background: linear-gradient(135deg, var(--green-bright), var(--green));
+      padding: 4px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-logo-text .name {
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.3px;
+      color: var(--white);
+    }
+
+    .nav-logo-text .tagline {
+      font-size: 10px;
+      color: var(--green);
+      display: block;
+      letter-spacing: 0.5px;
+    }
+
+    /* buttons */
+    .btn-primary {
+      background: linear-gradient(105deg, var(--green-bright), var(--green));
+      border: none;
+      color: var(--black);
+      font-weight: 700;
+      border-radius: 60px;
+      padding: 14px 32px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      box-shadow: 0 8px 20px rgba(0, 200, 83, 0.2);
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 28px rgba(0, 200, 83, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid rgba(0, 200, 83, 0.6);
+      color: var(--white);
+      font-weight: 600;
+      border-radius: 60px;
+      padding: 14px 32px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-outline:hover {
+      background: rgba(0, 200, 83, 0.1);
+      border-color: var(--green);
+    }
+
+    /* section label */
+    .section-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    /* footer */
+    footer {
+      background: #020302;
+      padding: 48px 5% 40px;
+      text-align: center;
+      border-top: 1px solid rgba(0, 200, 83, 0.1);
+    }
+    .footer-logo {
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+    .footer-logo-icon {
+      background: linear-gradient(135deg, var(--green-bright), var(--green));
+      padding: 6px;
+      border-radius: 18px;
+      width: 56px;
+      margin: 0 auto;
+    }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .footer-brand span {
+      color: var(--green);
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin: 18px 0 22px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: var(--green);
+    }
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* phone modal */
+    .phone-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+    .phone-modal {
+      background: var(--dark2);
+      border-radius: 36px;
+      padding: 32px 28px;
+      text-align: center;
+      max-width: 320px;
+      width: 85%;
+      border: 1px solid rgba(0,200,83,0.3);
+    }
+    .phone-modal .icon {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+    .phone-modal h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    .phone-modal .number {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--green);
+      margin: 12px 0;
+    }
+    .phone-modal-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 16px;
+    }
+    .btn-call, .btn-cancel {
+      padding: 12px 24px;
+      border-radius: 40px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-call {
+      background: var(--green);
+      color: black;
+    }
+    .btn-cancel {
+      background: rgba(255,255,255,0.1);
+      color: white;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up {
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    /* RESPONSIVE adjustments */
+    @media (max-width: 680px) {
+      .navbar {
+        padding: 12px 5%;
+      }
+      .nav-logo-text .name {
+        font-size: 14px;
+      }
+      .hero-cta-group .btn-primary, .hero-cta-group .btn-outline {
+        padding: 14px 28px;
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo-icon">
+        <img src="imgs/logo_ad.png" alt="Primefix Logo" style="height:44px;width:auto;display:block;" />
+      </div>
+      <div class="nav-logo-text">
+        <span class="name">Primefix Solution Inc.</span>
+        <span class="tagline">Home Services</span>
+      </div>
+    </a>
+  </nav>
+
+  <!-- ===================== -->
+  <!-- HERO SECTION with BACKGROUND IMAGE (full width, reduced opacity behind text) -->
+  <!-- ===================== -->
+  <section class="hero" style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 130px 5% 90px; position: relative; overflow: hidden;">
+    
+    <!-- BACKGROUND IMAGE: full width, behind all text, opacity reduced -->
+    <div class="hero-bg-image" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0;">
+      <img src="/imgs/bg.jpg" alt="background" style="width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.09; pointer-events: none;" />
+    </div>
+    
+    <!-- Additional overlay gradient for depth (preserves readability) -->
+    <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.65) 0%, rgba(0,20,5,0.5) 100%); z-index: 1;"></div>
+    
+    <!-- subtle grid lines + orbs (optional but keep depth) -->
+    <div style="position: absolute; inset: 0; z-index: 1; pointer-events: none;">
+      <div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(0,200,83,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,83,0.03) 1px, transparent 1px); background-size: 72px 72px;"></div>
+    </div>
+    
+    <!-- all text content lives in z-index above background -->
+    <div style="position: relative; z-index: 3; max-width: 1200px; width: 100%;">
+      <div class="hero-badge" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(0,200,83,0.12); border: 1px solid rgba(0,200,83,0.35); color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; padding: 8px 20px; border-radius: 50px; margin-bottom: 36px; backdrop-filter: blur(4px);">
+        <span class="live-dot" style="width: 7px; height: 7px; background: var(--green); border-radius: 50%; box-shadow: 0 0 0 0 rgba(0,200,83,0.4); display: inline-block;"></span>
+        Licensed &amp; Insured Professionals
+      </div>
+      
+      <h1 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 7vw, 88px); font-weight: 800; line-height: 1.08; letter-spacing: -2px; margin-bottom: 18px; color: white; text-shadow: 0 2px 20px rgba(0,0,0,0.3);">
+        Primefix <span style="color: var(--green); font-style: italic;">Solution</span> Inc.
+      </h1>
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 3vw, 32px); color: rgba(255,255,255,0.85); font-weight: 500; line-height: 1.3; margin-bottom: 18px; letter-spacing: -0.5px; text-shadow: 0 1px 8px rgba(0,0,0,0.2);">
+        Your Trusted Home Experts
+      </div>
+      <p style="font-size: clamp(17px, 2vw, 22px); color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto 44px; line-height: 1.8; font-weight: 400; text-shadow: 0 1px 4px rgba(0,0,0,0.2);">
+        Fast, reliable &amp; affordable home services — from storm-damaged roofs to broken garage doors, we fix it right.
+      </p>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 22px; flex-wrap: wrap; margin-bottom: 32px;">
+        <a href="roofing.html" class="btn-primary" style="font-size: 18px; padding: 18px 48px; letter-spacing: 1px; box-shadow: 0 8px 32px rgba(0,200,83,0.25);">Roofing Services</a>
+        <a href="garage.html" class="btn-outline" style="font-size: 18px; padding: 18px 48px; letter-spacing: 1px;">Garage Door Services</a>
+      </div>
+    </div>
+    
+    <!-- scroll indicator -->
+    <div style="position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 6px; color: rgba(255,255,255,0.4); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; z-index: 3;">
+      <div style="width: 1px; height: 40px; background: linear-gradient(180deg, rgba(0,200,83,0.6), transparent); animation: scrollLine 2s ease-in-out infinite;"></div>
+      scroll
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip" style="background: #111511; border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); padding: 22px 5%; display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap;">
+    <div class="trust-item" style="display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.65); text-transform: uppercase;"><span style="width: 6px; height: 6px; background: var(--green); border-radius: 50%; box-shadow: 0 0 6px rgba(0,200,83,0.6);"></span> 5-Star Rated</div>
+    <div class="trust-item" style="display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.65); text-transform: uppercase;"><span style="width: 6px; height: 6px; background: var(--green); border-radius: 50%;"></span> Licensed &amp; Insured</div>
+    <div class="trust-item" style="display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.65); text-transform: uppercase;"><span style="width: 6px; height: 6px; background: var(--green); border-radius: 50%;"></span> Same-Day Response</div>
+    <div class="trust-item" style="display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.65); text-transform: uppercase;"><span style="width: 6px; height: 6px; background: var(--green); border-radius: 50%;"></span> Free Estimates</div>
+    <div class="trust-item" style="display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.65); text-transform: uppercase;"><span style="width: 6px; height: 6px; background: var(--green); border-radius: 50%;"></span> 100% Satisfaction</div>
+  </div>
+
+  <!-- SERVICES SECTION -->
+  <section class="services-section" style="padding: 100px 5% 120px; position: relative;">
+    <div class="services-section-head" style="text-align: center; margin-bottom: 70px;">
+      <div class="section-label" style="font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--green);">What We Do</div>
+      <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 5vw, 56px); font-weight: 700; line-height: 1.1;">Choose Your <em style="color: var(--green); font-style: italic;">Service</em></h2>
+      <p style="color: rgba(255,255,255,0.45); font-size: 15px; max-width: 360px; margin: 12px auto 0;">Select a service to get a free estimate or learn more</p>
+    </div>
+
+    <div class="services-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 960px; margin: 0 auto;">
+      <!-- ROOFING CARD -->
+      <a href="roofing.html" class="service-card" style="position: relative; background: #111511; border: 1px solid rgba(255,255,255,0.06); border-radius: 24px; overflow: hidden; text-decoration: none; transition: transform 0.4s cubic-bezier(.34,1.56,.64,1), border-color 0.4s; display: block;">
+        <div class="sc-img-wrap" style="overflow: hidden; position: relative; height: 230px;">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=85" alt="Roofing" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.65); transition: all 0.5s;" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=85'" />
+          <div style="position: absolute; top: 18px; right: 18px; width: 36px; height: 36px; background: rgba(0,200,83,0.2); border: 1px solid rgba(0,200,83,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--green); backdrop-filter: blur(4px);">01</div>
+        </div>
+        <div style="padding: 26px 28px 32px;">
+          <div style="display: inline-flex; background: rgba(0,200,83,0.1); color: var(--green); font-size: 10px; font-weight: 800; letter-spacing: 2.5px; padding: 5px 12px; border-radius: 50px; margin-bottom: 14px;">Roofing</div>
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; margin-bottom: 10px; color: white;">Roof Repair &amp; Replacement</h3>
+          <p style="color: rgba(255,255,255,0.55); font-size: 13px; line-height: 1.7; margin-bottom: 24px;">Storm damage, missing shingles, leaks — we repair and replace roofs fast. Fully licensed and insured with insurance claim assistance.</p>
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span style="color: var(--green); font-weight: 700; font-size: 13px;">Free Estimate</span>
+            <div style="width: 38px; height: 38px; background: linear-gradient(135deg, var(--green-bright), var(--green)); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.3s;"><svg width="16" height="16" viewBox="0 0 24 24" fill="black"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+      </a>
+
+      <!-- GARAGE DOOR CARD -->
+      <a href="garage.html" class="service-card" style="position: relative; background: #111511; border: 1px solid rgba(255,255,255,0.06); border-radius: 24px; overflow: hidden; text-decoration: none; transition: transform 0.4s cubic-bezier(.34,1.56,.64,1); display: block;">
+        <div class="sc-img-wrap" style="overflow: hidden; position: relative; height: 230px;">
+          <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=900&q=85" alt="Garage Door" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.65); transition: all 0.5s;" onerror="this.src='https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&q=85'" />
+          <div style="position: absolute; top: 18px; right: 18px; width: 36px; height: 36px; background: rgba(0,200,83,0.2); border: 1px solid rgba(0,200,83,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--green); backdrop-filter: blur(4px);">02</div>
+        </div>
+        <div style="padding: 26px 28px 32px;">
+          <div style="display: inline-flex; background: rgba(0,200,83,0.1); color: var(--green); font-size: 10px; font-weight: 800; letter-spacing: 2.5px; padding: 5px 12px; border-radius: 50px; margin-bottom: 14px;">Garage Door</div>
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; margin-bottom: 10px; color: white;">Garage Door Repair &amp; Install</h3>
+          <p style="color: rgba(255,255,255,0.55); font-size: 13px; line-height: 1.7; margin-bottom: 24px;">Broken spring, won't open, need a new install — we fix and install all garage door types. Fast, clean, starting at just $30.</p>
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span style="color: var(--green); font-weight: 700; font-size: 13px;">Free Estimate</span>
+            <div style="width: 38px; height: 38px; background: linear-gradient(135deg, var(--green-bright), var(--green)); border-radius: 50%; display: flex; align-items: center; justify-content: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="black"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- WHY US BAND (enhanced, modern) -->
+  <div style="background: linear-gradient(135deg, #0E130E, #070A07); border-top: 1px solid rgba(0,200,83,0.12); border-bottom: 1px solid rgba(0,200,83,0.12); padding: 80px 5%;">
+    <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+      <div>
+        <div class="section-label" style="margin-bottom: 8px;">Why Primefix</div>
+        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 4vw, 44px); font-weight: 700; line-height: 1.2; margin-bottom: 20px;">The <em style="color: var(--green); font-style: italic;">Standard</em><br/>You Deserve</h2>
+        <p style="color: rgba(255,255,255,0.6); font-size: 15px; line-height: 1.75; max-width: 460px;">We don't just fix problems — we protect your home and give you total peace of mind. Every technician is vetted, licensed, and committed to quality that lasts.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px;">
+        <div style="background: rgba(0,0,0,0.3); border-radius: 20px; padding: 28px 20px; border: 1px solid rgba(0,200,83,0.12); transition: all 0.2s;">
+          <div style="font-size: 32px; margin-bottom: 12px;">⚡</div>
+          <h4 style="color: var(--green); font-size: 18px; font-weight: 700; margin-bottom: 6px;">Same-Day Service</h4>
+          <p style="font-size: 13px; color: rgba(255,255,255,0.65);">Most jobs completed the day you call. Emergency slots available.</p>
+        </div>
+        <div style="background: rgba(0,0,0,0.3); border-radius: 20px; padding: 28px 20px; border: 1px solid rgba(0,200,83,0.12);">
+          <div style="font-size: 32px; margin-bottom: 12px;">🛡️</div>
+          <h4 style="color: var(--green); font-size: 18px; font-weight: 700; margin-bottom: 6px;">Licensed &amp; Insured</h4>
+          <p style="font-size: 13px; color: rgba(255,255,255,0.65);">Full coverage so you're protected from day one.</p>
+        </div>
+        <div style="background: rgba(0,0,0,0.3); border-radius: 20px; padding: 28px 20px; border: 1px solid rgba(0,200,83,0.12);">
+          <div style="font-size: 32px; margin-bottom: 12px;">💬</div>
+          <h4 style="color: var(--green); font-size: 18px; font-weight: 700; margin-bottom: 6px;">Free Inspection</h4>
+          <p style="font-size: 13px; color: rgba(255,255,255,0.65);">No-obligation on-site estimate — no surprises.</p>
+        </div>
+        <div style="background: rgba(0,0,0,0.3); border-radius: 20px; padding: 28px 20px; border: 1px solid rgba(0,200,83,0.12);">
+          <div style="font-size: 32px; margin-bottom: 12px;">⭐</div>
+          <h4 style="color: var(--green); font-size: 18px; font-weight: 700; margin-bottom: 6px;">5-Star Quality</h4>
+          <p style="font-size: 13px; color: rgba(255,255,255,0.65);">Hundreds of satisfied homeowners across the region.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="index.html" class="footer-logo" style="text-decoration: none;">
+      <div class="footer-logo-icon">
+        <img src="imgs/logo_ad.png" alt="Primefix Logo" style="height:38px;width:auto;display:block;" />
+      </div>
+    </a>
+    <div class="footer-brand">Primefix <span>Solution</span> Inc.</div>
+    <div class="footer-links">
+      <a href="roofing.html">Roofing Services</a>
+      <a href="garage.html">Garage Door Services</a>
+    </div>
+    <p class="footer-copy">© 2025 Primefix Solution Inc. All rights reserved. &nbsp;|&nbsp; Licensed &amp; Insured</p>
+  </footer>
+
+  <!-- PHONE MODAL -->
+  <div class="phone-modal-overlay" id="phoneModal">
+    <div class="phone-modal">
+      <div class="icon">📞</div>
+      <h3>Call Us Now</h3>
+      <div class="number"></div>
+      <div class="phone-modal-actions">
+        <button class="btn-call">Call</button>
+        <button class="btn-cancel" onclick="closePhoneModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    function closePhoneModal() {
+      const modal = document.getElementById('phoneModal');
+      if (modal) modal.style.display = 'none';
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      // ensure any call hints are removed
+      document.querySelectorAll('.call-hint, .call-copy-hint').forEach(e => e.remove());
+      // live dot pulse animation (add missing keyframes)
+      const styleSheet = document.createElement("style");
+      styleSheet.textContent = `
+        @keyframes scrollLine {
+          0%, 100% { transform: scaleY(1); opacity: 0.6; }
+          50% { transform: scaleY(0.5); opacity: 0.2; }
+        }
+        .live-dot {
+          animation: livePulse 2s infinite;
+        }
+        @keyframes livePulse {
+          0% { box-shadow: 0 0 0 0 rgba(0,200,83,0.5); }
+          70% { box-shadow: 0 0 0 8px rgba(0,200,83,0); }
+          100% { box-shadow: 0 0 0 0 rgba(0,200,83,0); }
+        }
+        .service-card:hover .sc-img-wrap img {
+          filter: brightness(0.8) saturate(1.1);
+          transform: scale(1.03);
+        }
+        .service-card:hover {
+          transform: translateY(-8px);
+          border-color: rgba(0,200,83,0.4);
+          box-shadow: 0 24px 40px rgba(0,200,83,0.2);
+        }
+        .service-card {
+          transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s;
+        }
+        .service-card:hover .sc-arrow {
+          transform: translateX(4px) scale(1.08);
+        }
+        .sc-arrow {
+          transition: transform 0.2s;
+        }
+      `;
+      document.head.appendChild(styleSheet);
+    });
+  </script>
+</body>
+</html>
+```
