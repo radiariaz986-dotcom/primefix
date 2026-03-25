@@ -2,315 +2,448 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Roofing Services — Primefix Solution Inc.</title>
   <meta name="description" content="Professional roof repair and replacement. Storm damage, missing shingles, leaks — we fix it all. Free inspection & estimate. Call +1 (774) 806-5447">
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
   <style>
     /* =====================
-       ROOFING PAGE STYLES
+       GLOBAL RESET & VARIABLES - FULLY RESPONSIVE
     ===================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    /* HERO */
-    .svc-hero {
-      min-height: 72vh;
+    :root {
+      --black: #030303;
+      --dark1: #0A0D0A;
+      --dark2: #111511;
+      --dark3: #161C16;
+      --green: #00c851;
+      --green-bright: #00e660;
+      --green-dark: #009e40;
+      --white: #ffffff;
+      --gray: #8a8f8a;
+      --radius: 20px;
+      --shadow-green: 0 8px 32px rgba(0,200,83,0.2);
+      --shadow-green-sm: 0 4px 16px rgba(0,200,83,0.15);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      overflow-x: hidden;
+      width: 100%;
+      line-height: 1.5;
+    }
+
+    /* navbar responsive */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
       display: flex;
-      align-items: flex-end;
-      position: relative;
-      overflow: hidden;
-      padding: 120px 5% 64px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 5%;
+      background: rgba(3, 3, 3, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 200, 83, 0.2);
+      z-index: 1000;
     }
 
-    .svc-hero-bg {
-      position: absolute; inset: 0; z-index: 0;
-    }
-    .svc-hero-bg img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      filter: brightness(0.28) saturate(0.5);
-    }
-    .svc-hero-bg::after {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        linear-gradient(to right, rgba(5,8,5,0.96) 0%, rgba(5,8,5,0.7) 55%, rgba(0,200,83,0.06) 100%),
-        linear-gradient(to top, rgba(5,8,5,0.7) 0%, transparent 60%);
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
     }
 
-    /* decorative vertical accent */
-    .svc-hero-accent {
-      position: absolute;
-      left: 5%;
-      top: 0; bottom: 0;
-      width: 2px;
-      background: linear-gradient(180deg, transparent 0%, rgba(0,200,83,0.4) 40%, rgba(0,200,83,0.4) 60%, transparent 100%);
-      z-index: 1;
+    .nav-logo-icon {
+      background: linear-gradient(135deg, var(--green-bright), var(--green));
+      padding: 4px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
 
-    .svc-hero-content {
-      position: relative; z-index: 2;
-      max-width: 700px;
-      padding-left: 24px;
+    .nav-logo-icon img {
+      height: 38px;
+      width: auto;
+      display: block;
     }
 
-    .svc-hero-content h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(36px, 5.5vw, 68px);
+    .nav-logo-text .name {
       font-weight: 700;
-      line-height: 1.0;
-      margin-bottom: 20px;
-      letter-spacing: -1.5px;
-      animation: fadeDown 0.9s ease 0.1s both;
-    }
-    .svc-hero-content h1 em { color: var(--green); font-style: italic; }
-
-    .hero-desc {
-      font-size: 16px;
-      color: rgba(255,255,255,0.55);
-      max-width: 500px;
-      margin-bottom: 36px;
-      line-height: 1.75;
-      font-weight: 300;
-      animation: fadeDown 1s ease 0.2s both;
+      font-size: clamp(12px, 4vw, 18px);
+      letter-spacing: -0.3px;
+      color: var(--white);
+      white-space: nowrap;
     }
 
-    .hero-actions {
-      display: flex; gap: 12px; flex-wrap: wrap;
-      animation: fadeDown 1s ease 0.3s both;
+    .nav-logo-text .tagline {
+      font-size: clamp(7px, 2.5vw, 10px);
+      color: var(--green);
+      display: block;
+      letter-spacing: 0.5px;
+    }
+
+    /* back button responsive */
+    .back-btn {
+      position: fixed;
+      top: 85px;
+      left: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      padding: 8px 16px;
+      border-radius: 40px;
+      color: var(--white);
+      text-decoration: none;
+      font-size: clamp(12px, 3vw, 14px);
+      font-weight: 500;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.3s;
+      z-index: 99;
+    }
+    .back-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+    .back-btn:hover {
+      background: rgba(0,200,83,0.2);
+      border-color: var(--green);
+    }
+
+    /* buttons */
+    .btn-primary {
+      background: linear-gradient(105deg, var(--green-bright), var(--green));
+      border: none;
+      color: var(--black);
+      font-weight: 700;
+      border-radius: 60px;
+      padding: clamp(12px, 3vw, 14px) clamp(24px, 5vw, 32px);
+      font-size: clamp(13px, 3vw, 14px);
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-green);
+    }
+
+    .section-label {
+      font-size: clamp(9px, 2.5vw, 11px);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--green);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    /* stats row */
+    .stats-row {
+      display: flex;
+      gap: clamp(16px, 4vw, 32px);
+      flex-wrap: wrap;
+      background: var(--dark2);
+      padding: clamp(20px, 4vw, 28px);
+      border-radius: 28px;
+      border: 1px solid rgba(0,200,83,0.1);
+    }
+    .stat-box {
+      flex: 1;
+      text-align: center;
+      min-width: 80px;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 6vw, 42px);
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: clamp(10px, 2.5vw, 12px);
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* check list */
+    .check-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .check-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: clamp(13px, 3vw, 14px);
+      color: rgba(255,255,255,0.8);
+      padding: 8px 0;
+    }
+    .check-icon {
+      color: var(--green);
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    /* form styles */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-size: clamp(11px, 2.5vw, 12px);
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: clamp(10px, 3vw, 12px) 14px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      color: var(--white);
+      font-size: clamp(13px, 3vw, 14px);
+      transition: all 0.3s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--green);
+      background: rgba(0,0,0,0.6);
+    }
+    .form-group textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+    .consent-box {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+      align-items: flex-start;
+    }
+    .consent-box input {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--green);
+    }
+    .consent-box label {
+      font-size: clamp(10px, 2.5vw, 11px);
+      color: rgba(255,255,255,0.5);
+      line-height: 1.4;
+    }
+    .consent-box a {
+      color: var(--green);
+      text-decoration: none;
+    }
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(105deg, var(--green-bright), var(--green));
+      border: none;
+      color: var(--black);
+      font-weight: 800;
+      padding: clamp(14px, 3.5vw, 16px);
+      border-radius: 40px;
+      font-size: clamp(14px, 3.5vw, 15px);
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 8px;
+    }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-green);
+    }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 30px 20px;
+    }
+    .form-success .success-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    .form-success h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: var(--green);
+    }
+
+    /* footer responsive */
+    footer {
+      background: #020302;
+      padding: clamp(32px, 6vw, 48px) 5% clamp(28px, 5vw, 40px);
+      text-align: center;
+      border-top: 1px solid rgba(0, 200, 83, 0.1);
+    }
+    .footer-logo {
+      display: inline-block;
+      margin-bottom: 16px;
+      text-decoration: none;
+    }
+    .footer-logo-icon {
+      background: linear-gradient(135deg, var(--green-bright), var(--green));
+      padding: 6px;
+      border-radius: 18px;
+      width: 52px;
+      margin: 0 auto;
+    }
+    .footer-logo-icon img {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 5vw, 22px);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .footer-brand span {
+      color: var(--green);
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: clamp(20px, 6vw, 28px);
+      margin: 18px 0 22px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: clamp(11px, 3vw, 13px);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: var(--green);
+    }
+    .footer-copy {
+      font-size: clamp(9px, 2.5vw, 11px);
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* phone modal */
+    .phone-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+    .phone-modal {
+      background: var(--dark2);
+      border-radius: clamp(28px, 6vw, 36px);
+      padding: clamp(24px, 5vw, 32px) clamp(20px, 4vw, 28px);
+      text-align: center;
+      max-width: 320px;
+      width: 85%;
+      border: 1px solid rgba(0,200,83,0.3);
+      margin: 20px;
+    }
+    .phone-modal .icon {
+      font-size: clamp(36px, 8vw, 42px);
+      margin-bottom: 12px;
+    }
+    .phone-modal h3 {
+      font-size: clamp(20px, 5vw, 24px);
+      margin-bottom: 8px;
+    }
+    .phone-modal .number {
+      font-size: clamp(24px, 6vw, 28px);
+      font-weight: 700;
+      color: var(--green);
+      margin: 12px 0;
+    }
+    .btn-call, .btn-cancel {
+      padding: 10px 20px;
+      border-radius: 40px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .btn-call {
+      background: var(--green);
+      color: black;
+    }
+    .btn-cancel {
+      background: rgba(255,255,255,0.15);
+      color: white;
     }
 
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-14px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    .fade-up {
+      animation: fadeDown 0.7s ease forwards;
+    }
 
-    /* phone number pill in hero */
+    /* hero phone pill */
     .hero-phone-pill {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       background: rgba(0,200,83,0.12);
       border: 1px solid rgba(0,200,83,0.3);
-      color: var(--green); padding: 10px 20px;
-      border-radius: 50px; font-weight: 700; font-size: 14px;
-      cursor: pointer; text-decoration: none;
+      color: var(--green);
+      padding: clamp(8px, 2.5vw, 10px) clamp(16px, 4vw, 20px);
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: clamp(12px, 3vw, 14px);
+      cursor: pointer;
+      text-decoration: none;
       transition: all 0.3s;
-      letter-spacing: 0.5px;
     }
     .hero-phone-pill:hover {
-      background: var(--green); color: var(--black);
-      box-shadow: var(--shadow-green-sm);
-    }
-
-    /* =====================
-       PAGE BODY LAYOUT
-    ===================== */
-    .page-body { padding: 72px 5% 100px; }
-
-    .page-grid {
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 52px;
-      max-width: 1140px;
-      margin: 0 auto;
-    }
-
-    /* =====================
-       CONTENT COLUMN
-    ===================== */
-    .content-col h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 36px; font-weight: 700;
-      margin-bottom: 14px; line-height: 1.15;
-      letter-spacing: -0.5px;
-    }
-    .content-col h2 em { color: var(--green); font-style: italic; }
-
-    .lead-text {
-      font-size: 15px;
-      color: rgba(255,255,255,0.5);
-      margin-bottom: 38px;
-      line-height: 1.8;
-    }
-
-    /* services list block */
-    .svc-list-block { margin-bottom: 50px; }
-    .svc-list-block h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 24px; font-weight: 700;
-      margin-bottom: 20px;
-      display: flex; align-items: center; gap: 14px;
-    }
-    .svc-list-block h3::after {
-      content: '';
-      flex: 1; height: 1px;
-      background: linear-gradient(90deg, rgba(0,200,83,0.2), transparent);
-    }
-
-    /* info cards */
-    .info-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 50px;
-    }
-
-    .info-card {
-      background: var(--dark2);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: var(--radius);
-      padding: 22px 20px;
-      transition: border-color 0.3s, transform 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .info-card::before {
-      content: '';
-      position: absolute; bottom: 0; left: 0;
-      width: 100%; height: 2px;
-      background: linear-gradient(90deg, var(--green), transparent);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.3s ease;
-    }
-    .info-card:hover { border-color: rgba(0,200,83,0.2); transform: translateY(-4px); }
-    .info-card:hover::before { transform: scaleX(1); }
-    .info-card .ic-icon { font-size: 24px; margin-bottom: 10px; }
-    .info-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; letter-spacing: 0.2px; }
-    .info-card p { font-size: 12px; color: var(--gray); line-height: 1.6; }
-
-    /* free offer block */
-    .offer-block {
-      background: linear-gradient(135deg, rgba(0,200,83,0.1) 0%, rgba(0,200,83,0.04) 100%);
-      border: 1px solid rgba(0,200,83,0.25);
-      border-radius: var(--radius);
-      padding: 28px;
-      margin-bottom: 50px;
-      display: flex; align-items: center; gap: 20px;
-      position: relative; overflow: hidden;
-    }
-    .offer-block::before {
-      content: '';
-      position: absolute; top: 0; left: 0;
-      width: 4px; height: 100%;
-      background: linear-gradient(180deg, var(--green-bright), var(--green-dark));
-    }
-    .offer-icon { font-size: 38px; flex-shrink: 0; }
-    .offer-block h4 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px; font-weight: 700;
-      color: var(--green); margin-bottom: 5px;
-    }
-    .offer-block p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
-
-    /* phone call block */
-    .phone-block {
-      background: var(--dark2);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: var(--radius);
-      padding: 30px;
-      margin-bottom: 50px;
-    }
-    .phone-block h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 24px; font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .phone-block .phone-sub {
-      color: var(--gray); font-size: 13px; margin-bottom: 20px;
-    }
-
-    .phone-cta-btn {
-      display: inline-flex; align-items: center; gap: 12px;
-      background: linear-gradient(135deg, var(--green-bright), var(--green));
+      background: var(--green);
       color: var(--black);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800; font-size: 18px;
-      padding: 14px 28px; border-radius: 12px;
-      border: none; cursor: pointer;
-      letter-spacing: 0.5px;
-      transition: all 0.3s; text-decoration: none;
-      box-shadow: var(--shadow-green-sm);
-    }
-    .phone-cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-green);
-      filter: brightness(1.08);
-    }
-
-    .phone-hint {
-      display: block; margin-top: 10px;
-      font-size: 11px; color: var(--gray);
-      letter-spacing: 0.5px;
-    }
-
-    .hours-row {
-      display: flex; gap: 20px; flex-wrap: wrap;
-      margin-top: 18px;
-    }
-    .hours-item {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 12px; color: rgba(255,255,255,0.45);
-      font-weight: 500;
-    }
-    .hours-item svg { color: var(--green); flex-shrink: 0; }
-
-    /* =====================
-       FORM CARD
-    ===================== */
-    .form-card {
-      background: var(--dark2);
-      border: 1px solid rgba(0,200,83,0.12);
-      border-radius: 24px;
-      overflow: hidden;
-      position: sticky;
-      top: 100px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,200,83,0.05);
-    }
-
-    .form-card-header {
-      background: linear-gradient(135deg, rgba(0,200,83,0.12) 0%, rgba(0,200,83,0.05) 100%);
-      border-bottom: 1px solid rgba(0,200,83,0.12);
-      padding: 28px 30px 24px;
-      position: relative;
-      overflow: hidden;
-    }
-    .form-card-header::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--green-bright), var(--green), var(--green-dark));
-    }
-
-    .fch-badge {
-      display: inline-block;
-      background: var(--green); color: var(--black);
-      font-size: 10px; font-weight: 800;
-      letter-spacing: 2px; text-transform: uppercase;
-      padding: 4px 12px; border-radius: 50px;
-      margin-bottom: 10px;
-    }
-    .form-card-header h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 26px; font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .form-card-header p { font-size: 13px; color: var(--gray); }
-
-    .form-card form { padding: 24px 30px 30px; }
-
-    /* =====================
-       RESPONSIVE
-    ===================== */
-    @media (max-width: 900px) {
-      .page-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      .form-card { position: static; top: auto; }
-    }
-
-    @media (max-width: 600px) {
-      .info-cards { grid-template-columns: 1fr; }
-      .svc-hero { padding: 110px 5% 50px; }
-      .offer-block { flex-direction: column; gap: 14px; }
     }
   </style>
 </head>
@@ -320,21 +453,13 @@
   <nav class="navbar">
     <a href="index.html" class="nav-brand">
       <div class="nav-logo-icon">
-        <img src="imgs/logo_ad.png" alt="Primefix Logo" style="height:44px;width:auto;display:block;" />
+        <img src="imgs/logo_ad.png" alt="Primefix Logo" />
       </div>
       <div class="nav-logo-text">
         <span class="name">Primefix Solution Inc.</span>
         <span class="tagline">Roofing Services</span>
       </div>
     </a>
-    <!-- <div class="nav-right">
-      <a href="#" class="nav-phone" data-phone="+17748065447" data-phone-display="+1 (774) 806-5447">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
-        </svg>
-        Call Us
-      </a>
-    </div> -->
   </nav>
 
   <!-- BACK BUTTON -->
@@ -343,28 +468,20 @@
     Back
   </a>
 
-  <!-- HERO -->
-  <section class="svc-hero">
-    <div class="svc-hero-bg">
-      <img
-        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80"
-        alt="Roofing"
-        onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80'"
-      />
+  <!-- HERO SECTION - FULLY RESPONSIVE -->
+  <section style="min-height: 65vh; display: flex; align-items: flex-end; position: relative; overflow: hidden; padding: clamp(100px, 15vh, 120px) 5% clamp(40px, 6vh, 64px);">
+    <div style="position: absolute; inset: 0; z-index: 0;">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80" alt="Roofing" style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.28) saturate(0.5);" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80'" />
+      <div style="position: absolute; inset: 0; background: linear-gradient(to right, rgba(5,8,5,0.96) 0%, rgba(5,8,5,0.7) 55%, rgba(0,200,83,0.06) 100%), linear-gradient(to top, rgba(5,8,5,0.7) 0%, transparent 60%);"></div>
     </div>
-    <div class="svc-hero-accent"></div>
-    <div class="svc-hero-content">
-      <div class="section-label">Roofing Services</div>
-      <h1>Need a New Roof or <em>Repairs?</em><br/>We've Got You Covered.</h1>
-      <p class="hero-desc">
-        Leaking roof? Storm damage? Missing shingles? Don't wait until it gets worse —
-        protect your home today with Primefix's expert roofing team.
-      </p>
-      <div class="hero-actions">
-        <a href="#quote-form" class="btn-primary">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 11H7l5-5 5 5h-2v5H9v-5z M5 20h14v-2H5v2z"/></svg>
-          Get Free Estimate
-        </a>
+    <div style="position: absolute; left: 5%; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, transparent 0%, rgba(0,200,83,0.5) 40%, rgba(0,200,83,0.5) 60%, transparent 100%); z-index: 1;"></div>
+    
+    <div style="position: relative; z-index: 2; max-width: 700px; width: 100%; padding-left: clamp(16px, 4vw, 24px);">
+      <div class="section-label" style="animation: fadeDown 0.9s ease 0.05s both;">Roofing Services</div>
+      <h1 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 7vw, 68px); font-weight: 700; line-height: 1.05; margin-bottom: clamp(16px, 3vw, 20px); letter-spacing: -1px; animation: fadeDown 0.9s ease 0.1s both;">Need a New Roof or <em style="color: var(--green); font-style: italic;">Repairs?</em><br/>We've Got You Covered.</h1>
+      <p style="font-size: clamp(14px, 3.5vw, 16px); color: rgba(255,255,255,0.6); max-width: 500px; margin-bottom: clamp(28px, 5vw, 36px); line-height: 1.7; font-weight: 300; animation: fadeDown 1s ease 0.2s both;">Leaking roof? Storm damage? Missing shingles? Don't wait until it gets worse — protect your home today with Primefix's expert roofing team.</p>
+      <div style="display: flex; gap: clamp(12px, 3vw, 16px); flex-wrap: wrap; animation: fadeDown 1s ease 0.3s both;">
+        <a href="#quote-form" class="btn-primary">🔧 Get Free Estimate</a>
         <a href="#" class="hero-phone-pill" data-phone="+17748065447" data-phone-display="+1 (774) 806-5447">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
           +1 (774) 806-5447
@@ -373,44 +490,29 @@
     </div>
   </section>
 
-  <!-- BODY -->
-  <div class="page-body">
-    <div class="page-grid">
-
-      <!-- LEFT COLUMN -->
-      <div class="content-col">
-
-        <!-- STATS -->
-        <div class="stats-row fade-up" style="margin-bottom:50px">
-          <div class="stat-box">
-            <div class="stat-num">500+</div>
-            <div class="stat-label">Roofs Completed</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num">5★</div>
-            <div class="stat-label">Average Rating</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num">100%</div>
-            <div class="stat-label">Satisfaction</div>
-          </div>
+  <!-- MAIN BODY - FULLY RESPONSIVE GRID -->
+  <div style="padding: clamp(48px, 8vw, 72px) 5% clamp(60px, 10vw, 100px);">
+    <div style="display: grid; grid-template-columns: 1fr; gap: clamp(40px, 6vw, 52px); max-width: 1200px; margin: 0 auto;">
+      
+      <!-- MAIN CONTENT COLUMN -->
+      <div>
+        <!-- STATS ROW -->
+        <div class="stats-row fade-up" style="margin-bottom: clamp(40px, 6vw, 50px);">
+          <div class="stat-box"><div class="stat-num">500+</div><div class="stat-label">Roofs Completed</div></div>
+          <div class="stat-box"><div class="stat-num">5★</div><div class="stat-label">Average Rating</div></div>
+          <div class="stat-box"><div class="stat-num">100%</div><div class="stat-label">Satisfaction</div></div>
         </div>
 
         <!-- ABOUT -->
-        <div class="fade-up" style="margin-bottom:50px">
+        <div class="fade-up" style="margin-bottom: clamp(40px, 6vw, 50px);">
           <div class="section-label">Why Choose Us</div>
-          <h2>Trusted Roofing <em>Experts</em><br/>In Your Area</h2>
-          <p class="lead-text">
-            Every day you wait, the damage gets worse and the cost climbs higher.
-            Primefix Solution Inc. is your trusted local roofing expert — fast, affordable,
-            and fully insured. We handle everything from minor repairs to complete roof replacements,
-            and work directly with your insurance company for storm claims.
-          </p>
+          <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 6vw, 36px); font-weight: 700; margin-bottom: 14px; line-height: 1.2;">Trusted Roofing <em style="color: var(--green); font-style: italic;">Experts</em><br/>In Your Area</h2>
+          <p style="font-size: clamp(13px, 3vw, 15px); color: rgba(255,255,255,0.55); margin-bottom: 32px; line-height: 1.7;">Every day you wait, the damage gets worse and the cost climbs higher. Primefix Solution Inc. is your trusted local roofing expert — fast, affordable, and fully insured. We handle everything from minor repairs to complete roof replacements, and work directly with your insurance company for storm claims.</p>
         </div>
 
         <!-- SERVICES LIST -->
-        <div class="svc-list-block fade-up">
-          <h3>Our Roofing Services</h3>
+        <div class="fade-up" style="margin-bottom: clamp(40px, 6vw, 50px);">
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 5vw, 24px); font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">Our Roofing Services<span style="flex: 1; height: 1px; background: linear-gradient(90deg, rgba(0,200,83,0.2), transparent);"></span></h3>
           <ul class="check-list">
             <li><span class="check-icon">✓</span> Roof Repairs &amp; Full Replacement</li>
             <li><span class="check-icon">✓</span> Storm &amp; Insurance Claim Assistance</li>
@@ -422,190 +524,124 @@
           </ul>
         </div>
 
-        <!-- INFO CARDS -->
-        <div class="info-cards fade-up" style="margin-top:40px">
-          <div class="info-card">
-            <div class="ic-icon">⚡</div>
-            <h4>Same-Day Service</h4>
-            <p>Emergency repairs available. We respond fast when your home needs protection most.</p>
+        <!-- INFO CARDS - RESPONSIVE GRID -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: clamp(12px, 3vw, 14px); margin-bottom: clamp(40px, 6vw, 50px); margin-top: 10px;">
+          <div style="background: var(--dark2); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: clamp(18px, 4vw, 22px); transition: all 0.3s;">
+            <div style="font-size: clamp(22px, 5vw, 24px); margin-bottom: 10px;">⚡</div>
+            <h4 style="font-size: clamp(13px, 3vw, 14px); font-weight: 700; margin-bottom: 6px;">Same-Day Service</h4>
+            <p style="font-size: clamp(11px, 2.5vw, 12px); color: var(--gray); line-height: 1.5;">Emergency repairs available. We respond fast when your home needs protection most.</p>
           </div>
-          <div class="info-card">
-            <div class="ic-icon">🛡️</div>
-            <h4>Licensed &amp; Insured</h4>
-            <p>Fully licensed contractors with comprehensive insurance for complete peace of mind.</p>
+          <div style="background: var(--dark2); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: clamp(18px, 4vw, 22px);">
+            <div style="font-size: clamp(22px, 5vw, 24px); margin-bottom: 10px;">🛡️</div>
+            <h4 style="font-size: clamp(13px, 3vw, 14px); font-weight: 700; margin-bottom: 6px;">Licensed &amp; Insured</h4>
+            <p style="font-size: clamp(11px, 2.5vw, 12px); color: var(--gray);">Fully licensed contractors with comprehensive insurance for complete peace of mind.</p>
           </div>
-          <div class="info-card">
-            <div class="ic-icon">📋</div>
-            <h4>Insurance Claims</h4>
-            <p>We work directly with your insurance to maximize your claim payout.</p>
+          <div style="background: var(--dark2); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: clamp(18px, 4vw, 22px);">
+            <div style="font-size: clamp(22px, 5vw, 24px); margin-bottom: 10px;">📋</div>
+            <h4 style="font-size: clamp(13px, 3vw, 14px); font-weight: 700; margin-bottom: 6px;">Insurance Claims</h4>
+            <p style="font-size: clamp(11px, 2.5vw, 12px); color: var(--gray);">We work directly with your insurance to maximize your claim payout.</p>
           </div>
-          <div class="info-card">
-            <div class="ic-icon">⭐</div>
-            <h4>5-Star Quality</h4>
-            <p>Over 500 satisfied homeowners. 100% satisfaction guaranteed on every job.</p>
+          <div style="background: var(--dark2); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: clamp(18px, 4vw, 22px);">
+            <div style="font-size: clamp(22px, 5vw, 24px); margin-bottom: 10px;">⭐</div>
+            <h4 style="font-size: clamp(13px, 3vw, 14px); font-weight: 700; margin-bottom: 6px;">5-Star Quality</h4>
+            <p style="font-size: clamp(11px, 2.5vw, 12px); color: var(--gray);">Over 500 satisfied homeowners. 100% satisfaction guaranteed on every job.</p>
           </div>
         </div>
 
         <!-- OFFER BLOCK -->
-        <div class="offer-block fade-up">
-          <div class="offer-icon">🎯</div>
+        <div class="fade-up" style="background: linear-gradient(135deg, rgba(0,200,83,0.1) 0%, rgba(0,200,83,0.04) 100%); border: 1px solid rgba(0,200,83,0.25); border-radius: var(--radius); padding: clamp(20px, 4vw, 28px); margin-bottom: clamp(40px, 6vw, 50px); display: flex; align-items: center; gap: clamp(16px, 3vw, 20px); flex-wrap: wrap; position: relative; overflow: hidden;">
+          <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(180deg, var(--green-bright), var(--green-dark));"></div>
+          <div style="font-size: clamp(32px, 7vw, 38px); flex-shrink: 0;">🎯</div>
           <div>
-            <h4>FREE Inspection &amp; Estimate Available</h4>
-            <p>No obligation, no hidden fees. Our expert will assess your roof and provide a transparent quote on the spot.</p>
+            <h4 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 4vw, 22px); font-weight: 700; color: var(--green); margin-bottom: 5px;">FREE Inspection &amp; Estimate Available</h4>
+            <p style="font-size: clamp(12px, 2.8vw, 13px); color: rgba(255,255,255,0.6); line-height: 1.6;">No obligation, no hidden fees. Our expert will assess your roof and provide a transparent quote on the spot.</p>
           </div>
         </div>
 
         <!-- PHONE BLOCK -->
-        <div class="phone-block fade-up">
-          <h3>Call Us Today</h3>
-          <p class="phone-sub">Mon–Sat 8:00 AM – 7:00 PM &nbsp;·&nbsp; Same-day appointments available</p>
-          <a
-            href="#"
-            class="phone-cta-btn"
-            data-phone="+17748065447"
-            data-phone-display="+1 (774) 806-5447"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        <div class="fade-up" style="background: var(--dark2); border: 1px solid rgba(255,255,255,0.06); border-radius: 24px; padding: clamp(24px, 5vw, 30px); margin-bottom: 30px;">
+          <h3 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 5vw, 24px); font-weight: 700; margin-bottom: 6px;">Call Us Today</h3>
+          <p style="color: var(--gray); font-size: clamp(12px, 3vw, 13px); margin-bottom: 20px;">Mon–Sat 8:00 AM – 7:00 PM · Same-day appointments available</p>
+          <a href="#" class="phone-cta-btn" data-phone="+17748065447" data-phone-display="+1 (774) 806-5447" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--green-bright), var(--green)); color: var(--black); font-weight: 800; font-size: clamp(16px, 4vw, 18px); padding: clamp(12px, 3vw, 14px) clamp(24px, 5vw, 28px); border-radius: 50px; text-decoration: none; cursor: pointer; transition: all 0.3s;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
             +1 (774) 806-5447
           </a>
-          <span class="phone-hint">📱 Mobile: tap to call &nbsp;|&nbsp; 💻 Desktop: click to copy</span>
-          <div class="hours-row">
-            <div class="hours-item">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Mon–Sat: 8:00 AM – 7:00 PM
-            </div>
-            <div class="hours-item">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Emergency service available
-            </div>
+          <span style="display: block; margin-top: 12px; font-size: clamp(10px, 2.5vw, 11px); color: rgba(255,255,255,0.4);">📱 Mobile: tap to call &nbsp;|&nbsp; 💻 Desktop: click to copy</span>
+          <div style="display: flex; gap: clamp(16px, 4vw, 20px); flex-wrap: wrap; margin-top: 18px;">
+            <div style="display: flex; align-items: center; gap: 6px; font-size: clamp(11px, 2.8vw, 12px); color: rgba(255,255,255,0.5);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Mon–Sat: 8:00 AM – 7:00 PM</div>
+            <div style="display: flex; align-items: center; gap: 6px; font-size: clamp(11px, 2.8vw, 12px); color: rgba(255,255,255,0.5);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Emergency service available</div>
           </div>
         </div>
-
       </div>
 
-      <!-- RIGHT — FORM -->
-      <div class="form-card fade-up" id="quote-form">
-        <div class="form-card-header">
-          <div class="fch-badge">FREE ESTIMATE</div>
-          <h2>Get Your Free Quote</h2>
-          <p>We'll contact you within 2 hours</p>
+      <!-- FORM CARD - STICKY RESPONSIVE -->
+      <div id="quote-form" style="background: var(--dark2); border: 1px solid rgba(0,200,83,0.12); border-radius: 28px; overflow: hidden; position: sticky; top: 90px; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
+        <div style="background: linear-gradient(135deg, rgba(0,200,83,0.12) 0%, rgba(0,200,83,0.05) 100%); border-bottom: 1px solid rgba(0,200,83,0.12); padding: clamp(24px, 5vw, 28px) clamp(20px, 4vw, 30px); position: relative;">
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green-bright), var(--green), var(--green-dark));"></div>
+          <div style="display: inline-block; background: var(--green); color: var(--black); font-size: clamp(9px, 2.5vw, 10px); font-weight: 800; letter-spacing: 2px; padding: 4px 12px; border-radius: 50px; margin-bottom: 10px;">FREE ESTIMATE</div>
+          <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(24px, 5vw, 26px); font-weight: 700;">Get Your Free Quote</h2>
+          <p style="font-size: clamp(12px, 3vw, 13px); color: var(--gray);">We'll contact you within 2 hours</p>
         </div>
 
-        <form id="roofingForm">
+        <form id="roofingForm" style="padding: clamp(20px, 4vw, 24px) clamp(20px, 4vw, 30px) clamp(24px, 5vw, 30px);">
           <div class="form-row">
-            <div class="form-group">
-              <label>First Name</label>
-              <input type="text" placeholder="John" required />
-            </div>
-            <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" placeholder="Smith" required />
-            </div>
+            <div class="form-group"><label>First Name</label><input type="text" placeholder="John" required /></div>
+            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith" required /></div>
           </div>
-          <div class="form-group">
-            <label>Phone Number</label>
-            <input type="tel" placeholder="(000) 000-0000" required />
-          </div>
-          <div class="form-group">
-            <label>Email (Optional)</label>
-            <input type="email" placeholder="john@email.com" />
-          </div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="(000) 000-0000" required /></div>
+          <div class="form-group"><label>Email (Optional)</label><input type="email" placeholder="john@email.com" /></div>
           <div class="form-row">
-            <div class="form-group">
-              <label>Zip Code</label>
-              <input type="text" placeholder="00000" required />
-            </div>
-            <div class="form-group">
-              <label>State</label>
-              <select required>
-                <option value="" disabled selected>Select State</option>
-                <option>AL</option><option>AK</option><option>AZ</option><option>AR</option>
-                <option>CA</option><option>CO</option><option>CT</option><option>DE</option>
-                <option>FL</option><option>GA</option><option>HI</option><option>ID</option>
-                <option>IL</option><option>IN</option><option>IA</option><option>KS</option>
-                <option>KY</option><option>LA</option><option>ME</option><option>MD</option>
-                <option>MA</option><option>MI</option><option>MN</option><option>MS</option>
-                <option>MO</option><option>MT</option><option>NE</option><option>NV</option>
-                <option>NH</option><option>NJ</option><option>NM</option><option>NY</option>
-                <option>NC</option><option>ND</option><option>OH</option><option>OK</option>
-                <option>OR</option><option>PA</option><option>RI</option><option>SC</option>
-                <option>SD</option><option>TN</option><option>TX</option><option>UT</option>
-                <option>VT</option><option>VA</option><option>WA</option><option>WV</option>
-                <option>WI</option><option>WY</option>
-              </select>
-            </div>
+            <div class="form-group"><label>Zip Code</label><input type="text" placeholder="00000" required /></div>
+            <div class="form-group"><label>State</label><select required><option value="" disabled selected>Select State</option><option>GA</option><option>FL</option><option>AL</option><option>SC</option><option>NC</option><option>TN</option><option>MA</option><option>Other</option></select></div>
           </div>
-          <div class="form-group">
-            <label>Service Needed</label>
-            <select required>
-              <option value="" disabled selected>Select a service</option>
-              <option>Roof Repair</option>
-              <option>Full Roof Replacement</option>
-              <option>Storm Damage Assessment</option>
-              <option>Insurance Claim Assistance</option>
-              <option>Gutter Repair</option>
-              <option>Roof Inspection</option>
-              <option>Emergency Repair</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Additional Notes (Optional)</label>
-            <textarea placeholder="Describe your issue or any details that might help..."></textarea>
-          </div>
-          <div class="consent-box">
-            <input type="checkbox" id="consent-r" required />
-            <label for="consent-r">
-              By checking this box, you confirm you are 18+ and agree to our
-              <a href="#">Privacy Policy</a> and <a href="#">Terms &amp; Conditions</a>.
-              You consent to receive communications about your service request.
-            </label>
-          </div>
+          <div class="form-group"><label>Service Needed</label><select required><option value="" disabled selected>Select a service</option><option>Roof Repair</option><option>Full Roof Replacement</option><option>Storm Damage Assessment</option><option>Insurance Claim Assistance</option><option>Gutter Repair</option><option>Roof Inspection</option><option>Emergency Repair</option></select></div>
+          <div class="form-group"><label>Additional Notes (Optional)</label><textarea placeholder="Describe your issue or any details that might help..."></textarea></div>
+          <div class="consent-box"><input type="checkbox" id="consent-r" required /><label for="consent-r">By checking this box, you confirm you are 18+ and agree to our <a href="#">Privacy Policy</a> and <a href="#">Terms</a>. You consent to receive communications about your service request.</label></div>
           <button type="submit" class="submit-btn">Get My Free Roofing Estimate</button>
         </form>
-
-        <div class="form-success">
-          <div class="success-icon">✅</div>
-          <h3>Request Received!</h3>
-          <p>Thank you! Our roofing expert will contact you within 2 hours to schedule your free inspection.</p>
-        </div>
+        <div class="form-success" id="formSuccess"><div class="success-icon">✅</div><h3>Request Received!</h3><p>Thank you! Our roofing expert will contact you within 2 hours to schedule your free inspection.</p></div>
       </div>
-
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer>
-    <a href="index.html" class="footer-logo">
-      <div class="footer-logo-icon">
-        <img src="imgs/logo_ad.png" alt="Primefix Logo" style="height:38px;width:auto;display:block;" />
-      </div>
-    </a>
+    <a href="index.html" class="footer-logo"><div class="footer-logo-icon"><img src="imgs/logo_ad.png" alt="Primefix Logo" /></div></a>
     <div class="footer-brand">Primefix <span>Solution</span> Inc.</div>
-    <div class="footer-links">
-      <a href="index.html">Home</a>
-      <a href="roofing.html">Roofing</a>
-      <a href="garage.html">Garage Door</a>
-    </div>
+    <div class="footer-links"><a href="index.html">Home</a><a href="roofing.html">Roofing</a><a href="garage.html">Garage Door</a></div>
     <p class="footer-copy">© 2025 Primefix Solution Inc. All rights reserved. &nbsp;|&nbsp; Licensed &amp; Insured</p>
   </footer>
 
   <!-- PHONE MODAL -->
-  <div class="phone-modal-overlay" id="phoneModal">
-    <div class="phone-modal">
-      <div class="icon">📞</div>
-      <h3>Call Us Now</h3>
-      <p>Tap below to connect with our roofing team</p>
-      <div class="number"></div>
-      <div class="phone-modal-actions">
-        <button class="btn-call">Call Now</button>
-        <button class="btn-cancel" onclick="closePhoneModal()">Cancel</button>
-      </div>
-    </div>
-  </div>
+  <div class="phone-modal-overlay" id="phoneModal"><div class="phone-modal"><div class="icon">📞</div><h3>Call Us Now</h3><p>Tap below to connect with our roofing team</p><div class="number"></div><div class="phone-modal-actions"><button class="btn-call">Call Now</button><button class="btn-cancel" onclick="closePhoneModal()">Cancel</button></div></div></div>
 
-  <script src="js/main.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => { initForm('roofingForm'); });
+    function closePhoneModal() { const modal = document.getElementById('phoneModal'); if (modal) modal.style.display = 'none'; }
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('roofingForm');
+      const successDiv = document.getElementById('formSuccess');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          form.style.display = 'none';
+          if (successDiv) successDiv.style.display = 'block';
+          setTimeout(() => { location.reload(); }, 3000);
+        });
+      }
+      const phoneCta = document.querySelector('.phone-cta-btn');
+      const heroPhone = document.querySelector('.hero-phone-pill');
+      const showPhoneModal = function(e) {
+        e.preventDefault();
+        const modal = document.getElementById('phoneModal');
+        const numberDiv = modal.querySelector('.number');
+        numberDiv.innerText = '+1 (774) 806-5447';
+        modal.style.display = 'flex';
+        const callBtn = modal.querySelector('.btn-call');
+        callBtn.onclick = () => { window.location.href = 'tel:+17748065447'; };
+      };
+      if (phoneCta) phoneCta.addEventListener('click', showPhoneModal);
+      if (heroPhone) heroPhone.addEventListener('click', showPhoneModal);
+    });
   </script>
 </body>
 </html>
